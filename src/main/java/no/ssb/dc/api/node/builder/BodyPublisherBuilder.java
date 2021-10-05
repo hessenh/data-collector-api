@@ -1,6 +1,7 @@
 package no.ssb.dc.api.node.builder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import no.ssb.dc.api.node.Base;
@@ -18,8 +19,15 @@ import java.util.Objects;
 public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
     @JsonIgnore FormEncoding encoding;
-    @JsonProperty("plainTextData") BodyPublisherProducerBuilder plainText;
-    @JsonProperty("json") BodyPublisherProducerBuilder json;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("plainTextData")
+    BodyPublisherProducerBuilder plainText;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("json")
+    BodyPublisherProducerBuilder json;
+
     @JsonProperty("urlEncodedData") BodyPublisherProducerBuilder urlEncodedData;
     @JsonProperty("partsData") List<BodyPart> parts = new ArrayList<>();
 
@@ -41,6 +49,11 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
     public BodyPublisherBuilder json(BodyPublisherProducerBuilder bodyPublisherProducerBuilder) {
         this.json = bodyPublisherProducerBuilder;
+        this.encoding = FormEncoding.APPLICATION_JSON;
+        return this;
+    }
+    public BodyPublisherBuilder json(String text) {
+        this.json = new StringBodyPublisherProducerBuilder(text);
         this.encoding = FormEncoding.APPLICATION_JSON;
         return this;
     }
@@ -79,7 +92,8 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
     public <R extends Base> R build(BuildContext buildContext) {
         BodyPublisherProducer plainTextProducer = plainText == null ? null : plainText.build(buildContext);
         BodyPublisherProducer urlEncodedDataProducer = urlEncodedData == null ? null : urlEncodedData.build(buildContext);
-        return (R) new BodyPublisherNode(encoding, plainTextProducer, urlEncodedDataProducer, parts);
+        BodyPublisherProducer jsonProducer = json == null ? null : json.build(buildContext);
+        return (R) new BodyPublisherNode(encoding, plainTextProducer, jsonProducer, urlEncodedDataProducer, parts);
     }
 
     @Override
@@ -96,7 +110,7 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), encoding, plainText, urlEncodedData, parts);
+        return Objects.hash(super.hashCode(), encoding, plainText, json, urlEncodedData, parts);
     }
 
     @Override
@@ -104,21 +118,23 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
         return "BodyPublisherBuilder{" +
                 "encoding=" + encoding +
                 ", plainText='" + plainText + '\'' +
+                ", json='" + json + '\'' +
                 ", urlEncodedData='" + urlEncodedData + '\'' +
                 ", parts=" + parts +
                 '}';
     }
 
     static class BodyPublisherNode extends LeafNode implements BodyPublisher {
-
+        private final BodyPublisherProducer json;
         private final FormEncoding encoding;
         private final BodyPublisherProducer plainText;
         private final BodyPublisherProducer urlEncodedData;
         private final List<BodyPart> parts;
 
-        public BodyPublisherNode(FormEncoding encoding, BodyPublisherProducer plainText, BodyPublisherProducer urlEncodedData, List<BodyPart> parts) {
+        public BodyPublisherNode(FormEncoding encoding, BodyPublisherProducer plainText, BodyPublisherProducer json, BodyPublisherProducer urlEncodedData, List<BodyPart> parts) {
             this.encoding = encoding;
             this.plainText = plainText;
+            this.json = json;
             this.urlEncodedData = urlEncodedData;
             this.parts = parts;
         }
@@ -135,7 +151,7 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
         @Override
         public BodyPublisherProducer getJson() {
-            return plainText;
+            return json;
         }
 
         @Override

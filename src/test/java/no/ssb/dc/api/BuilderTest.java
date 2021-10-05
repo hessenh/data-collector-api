@@ -47,6 +47,12 @@ public class BuilderTest {
                             .formPart("foo", "file", "bar")
                     )
             )
+            .function(post("authorize1")
+                    .url("http://com.company/authorize")
+                    .data(bodyPublisher()
+                            .json("{json:\"json\"}")
+                    )
+            )
             .function(put("create-something")
                     .url("http://com.company/authorize")
                     .data(bodyPublisher()
@@ -138,8 +144,8 @@ public class BuilderTest {
         assertNotNull(deserialized);
         //System.out.printf("deserialized:%n%s%n", deserialized.serialize());
 
-        assertEquals(serialized, deserialized.serialize());
         assertEquals(actual, deserialized);
+        assertEquals(serialized, deserialized.serialize());
 
         Specification end = deserialized.end();
         FlowContext derserializedFlowContext = actual.end().configurations.flowContext();
