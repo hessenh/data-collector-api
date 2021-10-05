@@ -500,6 +500,13 @@ public class NodeBuilderDeserializer extends StdDeserializer<AbstractBuilder> {
                     builder.plainText(bodyPublisherProducerBuilder);
                 }
 
+                JsonNode jsonBodyNode = currentNode.get("json");
+                if (plainTextDataNode != null) {
+                    BodyPublisherProducerBuilder bodyPublisherProducerBuilder =
+                            (BodyPublisherProducerBuilder) handleNodeBuilder(depth + 1, context, ancestors, currentNode, plainTextDataNode);
+                    builder.json(bodyPublisherProducerBuilder);
+                }
+
                 JsonNode urlEncodedDataNode = currentNode.get("urlEncodedData");
                 if (urlEncodedDataNode != null) {
                     BodyPublisherProducerBuilder bodyPublisherProducerBuilder =

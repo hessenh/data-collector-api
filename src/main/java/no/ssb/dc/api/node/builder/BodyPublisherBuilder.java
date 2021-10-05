@@ -19,6 +19,7 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
     @JsonIgnore FormEncoding encoding;
     @JsonProperty("plainTextData") BodyPublisherProducerBuilder plainText;
+    @JsonProperty("json") BodyPublisherProducerBuilder json;
     @JsonProperty("urlEncodedData") BodyPublisherProducerBuilder urlEncodedData;
     @JsonProperty("partsData") List<BodyPart> parts = new ArrayList<>();
 
@@ -35,6 +36,12 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
     public BodyPublisherBuilder plainText(BodyPublisherProducerBuilder bodyPublisherProducerBuilder) {
         this.plainText = bodyPublisherProducerBuilder;
         this.encoding = FormEncoding.TEXT_PLAIN;
+        return this;
+    }
+
+    public BodyPublisherBuilder json(BodyPublisherProducerBuilder bodyPublisherProducerBuilder) {
+        this.json = bodyPublisherProducerBuilder;
+        this.encoding = FormEncoding.APPLICATION_JSON;
         return this;
     }
 
@@ -123,6 +130,11 @@ public class BodyPublisherBuilder extends OperationPublisherBuilder {
 
         @Override
         public BodyPublisherProducer getPlainText() {
+            return plainText;
+        }
+
+        @Override
+        public BodyPublisherProducer getJson() {
             return plainText;
         }
 
