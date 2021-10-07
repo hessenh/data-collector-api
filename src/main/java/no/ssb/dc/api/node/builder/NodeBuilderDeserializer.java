@@ -48,7 +48,8 @@ public class NodeBuilderDeserializer extends StdDeserializer<AbstractBuilder> {
     }
 
     private AbstractBuilder handleNodeBuilder(int depth, DeserializationContext context, Deque<JsonNode> ancestors,
-                                              JsonNode previousNode, JsonNode currentNode) {
+                                              JsonNode previousNode,
+                                              JsonNode currentNode) {
         if (currentNode == null || !currentNode.has("type")) {
             throw new RuntimeException(String.format("Error resolving node: %s => %s", nodePath(ancestors), ancestors.peekLast()));
         }
@@ -498,6 +499,13 @@ public class NodeBuilderDeserializer extends StdDeserializer<AbstractBuilder> {
                     BodyPublisherProducerBuilder bodyPublisherProducerBuilder =
                             (BodyPublisherProducerBuilder) handleNodeBuilder(depth + 1, context, ancestors, currentNode, plainTextDataNode);
                     builder.plainText(bodyPublisherProducerBuilder);
+                }
+
+                JsonNode jsonBodyNode = currentNode.get("json");
+                if (jsonBodyNode != null) {
+                    BodyPublisherProducerBuilder bodyPublisherProducerBuilder =
+                            (BodyPublisherProducerBuilder) handleNodeBuilder(depth + 1, context, ancestors, currentNode, jsonBodyNode);
+                    builder.json(bodyPublisherProducerBuilder);
                 }
 
                 JsonNode urlEncodedDataNode = currentNode.get("urlEncodedData");

@@ -12,6 +12,8 @@ public interface BodyPublisher extends OperationPublisher {
 
     BodyPublisherProducer getUrlEncodedData();
 
+    BodyPublisherProducer getJson();
+
     List<BodyPart> getParts();
 
 }

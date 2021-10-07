@@ -1,5 +1,6 @@
 package no.ssb.dc.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import no.ssb.dc.api.node.Configurations;
@@ -45,6 +46,7 @@ public class Specification {
     public static <R extends AbstractBuilder> R deserialize(String source, Class<R> builderClass) {
         try {
             ObjectMapper mapper = JsonParser.createYamlParser().mapper();
+            mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             SimpleModule module = new SimpleModule();
             module.addDeserializer(AbstractBuilder.class, new NodeBuilderDeserializer());
             mapper.registerModule(module);
