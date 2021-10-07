@@ -9,3 +9,8 @@ run-local: ## Run the app locally (without docker)
 .PHONY: release-dryrun
 release-dryrun: ## Simulate a release in order to detect any issues
 	./mvnw release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true" -DdryRun=true
+
+
+.PHONY: release
+release: ## Release a new version. Update POMs and tag the new version in git
+	./mvnw release:prepare release:perform -Darguments="-Dmaven.deploy.skip=true -Dmaven.javadoc.skip=true"
