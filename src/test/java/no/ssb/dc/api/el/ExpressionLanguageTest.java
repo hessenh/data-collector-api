@@ -56,4 +56,15 @@ public class ExpressionLanguageTest {
         System.out.printf("eval: %s", result);
         assertEquals(Long.valueOf(epochSecond), result);
     }
+
+    @Test
+    public void testConCatandBase64() {
+        String expr = "${base64.encode(a.concat(':').concat(b))}";
+
+        Map<String, Object> variables = new LinkedHashMap<>();
+        variables.put("a", "language");
+        variables.put("b", "testing");
+        ExpressionLanguage el = new ExpressionLanguage(new ExecutionContext.Builder().variables(variables).build());
+        assertEquals("bGFuZ3VhZ2U6dGVzdGluZw==", el.evaluateExpression(expr));
+    }
 }
