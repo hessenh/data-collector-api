@@ -49,6 +49,8 @@ public class BuilderTest {
             )
             .function(post("authorize1")
                     .url("http://com.company/authorize")
+                    .header("Authorization", "Bearer abc")
+                    .header("Content-Type", "application/json")
                     .data(bodyPublisher()
                             .json("{json:\"json\"}")
                     )
@@ -144,6 +146,7 @@ public class BuilderTest {
         assertNotNull(deserialized);
         //System.out.printf("deserialized:%n%s%n", deserialized.serialize());
 
+        System.out.printf("deserialized:%n%s%n", deserialized.serialize());
         assertEquals(actual, deserialized);
         assertEquals(serialized, deserialized.serialize());
 
