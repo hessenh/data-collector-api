@@ -19,7 +19,7 @@ public class Secret {
             Map<String, String> secretProviderMap = new LinkedHashMap<>();
             secretProviderMap.put("secrets.provider", secretProvider);
             secretProviderMap.put("secrets.project-id", projectId);
-            if (saPath != "ENGINE") {
+            if (!saPath.contains("ENGINE") ) {
                 secretProviderMap.put("secrets.service-account-key-path", saPath);
             }
             try {
