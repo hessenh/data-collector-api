@@ -57,6 +57,7 @@ public class ExpressionLanguage {
         jexlContext.set("contentStream", new ELContentStream(evaluateLastContentStreamPosition));
         jexlContext.set("base64", new ELBase64());
         jexlContext.set("gsm", new Gsm());
+        jexlContext.set("secret",new Secret());
     }
 
     public boolean isExpression(String expr) {

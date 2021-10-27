@@ -85,6 +85,27 @@ public class ExpressionLanguageTest {
         assertEquals("any", el.evaluateExpression(expr));
 
     }
+
+    @Disabled
+    @Test
+    public void testCombinedSecret() {
+        String sapath = "";
+        String projectID = "dev-sirius";
+        String secretIdOrSecret = "testsecret";
+        String provider = "google-secret-manager";
+        String clientId = "test";
+        String expr = "${secret.accessEncode(secretProvider, clientId, secretId, projectID, sapath)}";
+        Map<String, Object> variables = new LinkedHashMap<>();
+        variables.put("secretProvider", provider);
+        variables.put("secretId", secretIdOrSecret);
+        variables.put("projectID", projectID);
+        variables.put("clientId", clientId);
+        variables.put("sapath",sapath);
+        ExpressionLanguage el = new ExpressionLanguage(new ExecutionContext.Builder().variables(variables).build());
+
+        assertEquals("any", el.evaluateExpression(expr));
+
+    }
 }
 
 
