@@ -4,7 +4,7 @@
 
     <groupId>no.ssb.dc</groupId>
     <artifactId>data-collector-api</artifactId>
-    <version>0.8-SNAPSHOT</version>
+    <version>0.8</version>
     <packaging>jar</packaging>
 
     <name>Data Collector API</name>
@@ -49,7 +49,7 @@
     <scm>
         <connection>scm:git:git://github.com/statisticsnorway/data-collector-api.git</connection>
         <developerConnection>scm:git:git@github.com:statisticsnorway/data-collector-api.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>0.8</tag>
     </scm>
 
     <distributionManagement>
