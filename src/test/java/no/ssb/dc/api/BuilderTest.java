@@ -40,6 +40,7 @@ public class BuilderTest {
             )
             .function(post("authorize")
                     .url("http://com.company/authorize")
+                    .header("Content-Type","application/x-www-form-urlencoded")
                     .data(bodyPublisher()
                             .plainText("PLAIN_TEXT")
                             .urlEncoded("username=user&password=pass")
