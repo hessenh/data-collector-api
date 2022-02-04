@@ -19,7 +19,7 @@ resources:
   - repository: templates
     type: github
     name: statisticsnorway/azure-pipelines-templates
-    ref: refs/tags/1.1.18
+    ref: refs/tags/1.1.29
     endpoint: statisticsnorway (6)
 
 # Pipeline will be run on this base image
@@ -72,4 +72,8 @@ jobs:
 
       # Deploy artifact to Nexus
       - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
-        - template: maven/task-install-and-deploy-to-nexus.yml@templates
+        - template: complete-builds/job-lib-test-gar.yml@templates
+          parameters:
+            artifactName: data-collector-api
+            checkStyleRunAnalysis: false
+            sonarCloud: bipSonarCloud-Dapla
