@@ -67,7 +67,7 @@ jobs:
       - template: maven/task-cache.yml@templates
 
 
-  - template: complete-builds/job-lib-test-gar.yml@templates
+  - template: complete-builds/job-test-gar.yml@templates
     parameters:
       artifactName: data-collector-api
       checkStyleRunAnalysis: false
