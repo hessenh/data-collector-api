@@ -37,9 +37,9 @@
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
         <dynamic-configuration.version>0.4</dynamic-configuration.version>
         <service-provider-api.version>0.4</service-provider-api.version>
-        <dapla-secrets-client-api.version>0.6.1-SNAPSHOT</dapla-secrets-client-api.version>
-        <dapla-secrets-provider-google-secret-manager.version>0.4.2-SNAPSHOT</dapla-secrets-provider-google-secret-manager.version>
-        <dapla-secrets-provider-dynamic-configuration.version>0.6.2-SNAPSHOT</dapla-secrets-provider-dynamic-configuration.version>
+        <dapla-secrets-client-api.version>0.6.0</dapla-secrets-client-api.version>
+        <dapla-secrets-provider-google-secret-manager.version>0.4.1</dapla-secrets-provider-google-secret-manager.version>
+        <dapla-secrets-provider-dynamic-configuration.version>0.6.1</dapla-secrets-provider-dynamic-configuration.version>
         <rawdata-client-api.version>0.29-SNAPSHOT</rawdata-client-api.version>
     </properties>
 
