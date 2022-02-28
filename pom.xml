@@ -184,12 +184,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>no.ssb.guardian</groupId>
-            <artifactId>guardian-client</artifactId>
-            <version>${guardian-client-version}</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
