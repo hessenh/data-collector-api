@@ -4,7 +4,7 @@
 
     <groupId>no.ssb.dc</groupId>
     <artifactId>data-collector-api</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>Data Collector API</name>
@@ -78,7 +78,7 @@
     <scm>
         <connection>scm:git:git://github.com/statisticsnorway/data-collector-api.git</connection>
         <developerConnection>scm:git:git@github.com:statisticsnorway/data-collector-api.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>1.0.3</tag>
     </scm>
 
     <dependencies>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>no.ssb.dapla.secrets</groupId>
             <artifactId>dapla-secrets-provider-google-secret-manager</artifactId>
-            <version>${dapla-secrets-provider-google-secret-manager.version}</version>
+            <version>0.4.2</version>
             <scope>runtime</scope>
         </dependency>
         <!-- dynamic-configuration is unsafe and should only be used for migration or test purposes -->
