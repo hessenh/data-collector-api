@@ -25,7 +25,7 @@
         <commons-jexl3.version>3.1</commons-jexl3.version>
         <dapla-secrets-client-api.version>0.6.0</dapla-secrets-client-api.version>
         <dapla-secrets-provider-dynamic-configuration.version>0.6.1</dapla-secrets-provider-dynamic-configuration.version>
-        <dapla-secrets-provider-google-secret-manager.version>0.4.2-SNAPSHOT</dapla-secrets-provider-google-secret-manager.version>
+        <dapla-secrets-provider-google-secret-manager.version>0.4.2</dapla-secrets-provider-google-secret-manager.version>
         <dynamic-configuration.version>0.4</dynamic-configuration.version>
         <jackson.version>2.13.1</jackson.version>
         <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
