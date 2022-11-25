@@ -27,7 +27,7 @@
         <dapla-secrets-provider-dynamic-configuration.version>0.6.1</dapla-secrets-provider-dynamic-configuration.version>
         <dapla-secrets-provider-google-secret-manager.version>0.4.2</dapla-secrets-provider-google-secret-manager.version>
         <dynamic-configuration.version>0.4</dynamic-configuration.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
         <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
         <jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
         <junit.version>5.8.2</junit.version>
